@@ -1,0 +1,335 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #0b0d10;
+    color: #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+
+}
+
+.grid-container {
+    display: block;
+    display: grid;
+    width: 80%;
+    height: 97vh;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 1fr 0.5fr 0.9fr 0.9fr;
+    gap: 14px;
+    grid-template-areas:
+        "athlete app     spec    strength"
+        "athlete brand   brand   strength"
+        "limits  brand   brand   phone"
+        "trainers   trainers photo   phone"
+    ;
+
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-athlete-hero {
+    grid-area: athlete;
+    background-color: #e2d2cd;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
+
+
+.card-yellow-app {
+    grid-area: app;
+    background-color: #f7d022;
+}
+
+.card-font-spec {
+    grid-area: spec;
+    background-color: #f3f3f3;
+}
+
+.card-own-strength {
+    grid-area: strength;
+    background-color: #ffffff;
+}
+
+.yellow-dot {
+    background-color: #f3c244;
+    display: inline-block;
+    height: 15px;
+    width: 10px;
+}
+
+.black-dot {
+    display: inline-block;
+    background-color: #000000;
+    height: 15px;
+    width: 10px;
+}
+
+.card-center-brand {
+    grid-area: brand;
+    background-color: #fff4d6;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-redefine-limits {
+    grid-area: limits;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.card-redefine-limits>h2 {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.brand-footer {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    font-size: 0.8rem;
+
+}
+
+.mini-logo {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #f3c244;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    margin-right: 20px;
+}
+
+.card-trainer-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-visit-site {
+    width: 40%;
+    background-color: #f7d022;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.trainer-metrics {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-trainer-showcase {
+    grid-area: trainers;
+    background-color: #f1c3b6;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    border-radius: 28px;
+    padding: 10px;
+}
+
+.card-trainer-photo {
+    grid-area: photo;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
+.card-phone-preview {
+    grid-area: phone;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 28px;
+}
+
+.card-phone-img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.badge-logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.stats-overlay {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    gap: 6px;
+}
+
+.stat-badge {
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -10px;
+
+}
+
+
+
+.main-logo-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-symbol {
+    font-size: 3.5rem;
+    font-weight: 900;
+    transform: skewX(-10deg);
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.bold-headline {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-top: 15px;
+}
+
+.location-banner {
+    background-color: #f5cfc4;
+    padding: 20px 10px;
+    align-items: start;
+    border-radius: 10px;
+}
+
+.location-banner>div {
+
+    display: flex;
+    justify-content: start;
+}
+
+.site-link {
+    display: block;
+    margin-top: 30px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.btn-visit {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.color-palette {
+    display: flex;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+.color-palette>span {
+    height: 8px;
+    flex: 1;
+    border-radius: 3px;
+    margin-right: -10px;
+}
+
+.swatch-1 {
+    background: #d79f8c;
+}
+
+.swatch-2 {
+    background: #f3c244;
+}
+
+.swatch-3 {
+    background: #ffffff;
+    border: 1px solid #ddd;
+}
+
+.swatch-4 {
+    background: #000000;
+}
+
+.metric-num {
+    font-size: 3rem;
+}
+
+.app-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-store {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

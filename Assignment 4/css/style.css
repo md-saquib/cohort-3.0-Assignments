@@ -1,0 +1,316 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif, system-ui;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 40px;
+}
+
+.grid-container {
+  display: grid;
+  width: 80%;
+  height: 90vh;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: 0.5fr 1fr 1fr 0.5fr 1fr;
+  grid-template-areas:
+    "avatar-purple  flower          nav-menu  mini-purple"
+    "avatar-purple  flower          nav-menu  avatar-green"
+    "butusic        exhibition-info nav-menu  avatar-green"
+    "butusic        medals      reviews-hero  reviews-hero"
+    "butusic        appstore    reviews-hero reviews-hero"
+  ;
+}
+
+.card {
+  background-color: #121212;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.card-avatar-purple {
+  grid-area: avatar-purple;
+
+}
+
+.card-avatar-purple>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 38px;
+}
+
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 38px;
+}
+
+.card-circle-flower {
+  grid-area: flower;
+  background-color: #181818;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.card-nav-menu {
+  grid-area: nav-menu;
+  background-color: #161616;
+}
+
+.card-mini-purple {
+  grid-area: mini-purple;
+  background-color: #9254de;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+}
+
+.card-mini-purple>.mini-flex {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.card-mini-purple>.mini-flex>div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+
+
+}
+
+.emoji {
+  font-size: 2rem;
+  margin-right: 8px;
+  width: 30%;
+}
+
+.emoji-text {
+  font-size: 0.6rem;
+  color: #ccc;
+  width: 70%;
+}
+
+.card-butusic {
+  grid-area: butusic;
+  background-color: #0c0c0c;
+  border: 1px solid #333333;
+}
+
+.card-exhibition-info {
+  grid-area: exhibition-info;
+  background-color: #1c1c1c;
+}
+
+.location-tag {
+  font-size: 0.6rem;
+}
+
+.location-tag span {
+  font-size: 1rem;
+  padding: 7px 5px;
+  background-color: #D6F156;
+  border-radius: 50%;
+}
+
+.card-exhibition-info h2 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 20px;
+}
+
+.url-link {
+  font-size: 0.8rem;
+  color: #7b42f5;
+  margin-top: 12px;
+}
+
+.card-avatar-green {
+  grid-area: avatar-green;
+  border-radius: 28px;
+
+}
+
+.card-medals {
+  grid-area: medals;
+  background-color: #161616;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 10px;
+}
+
+.medal {
+  font-size: 3rem;
+}
+
+.card-appstore {
+  grid-area: appstore;
+  background-color: #d3f261;
+  color: #000;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-reviews-hero {
+  grid-area: reviews-hero;
+  background-color: #ffffff;
+  color: #000000;
+  flex-direction: row;
+}
+
+.badge-top-left {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.brand-title {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 4rem;
+  text-transform: uppercase;
+}
+
+.sub-brand {
+  color: #9254de;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.5rem;
+}
+
+.border {
+  border-top: 1px dashed #333;
+}
+
+.crypto-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #1c1c1c;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.btc-icon {
+  background: #d3f261;
+  color: #000;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.barcode-container {
+  overflow: hidden;
+}
+
+.barcode {
+  font-family: monospace;
+  font-size: 2.5rem;
+  letter-spacing: 0px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.nav-links {
+  list-style: none;
+  width: 100%;
+}
+
+.nav-links li {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8c8c8c;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.nav-links li.active {
+  background: #262626;
+  color: #ffffff;
+}
+
+.badge-dot {
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  background-color: #9254de;
+  border-radius: 50%;
+}
+
+.hero-left,
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-left h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  max-width: 200px;
+}
+
+.hero-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.rating-num {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stars {
+  color: #a0d911;
+  margin-bottom: 12px;
+}
+
+.btn-reviews {
+  background: #7b42f5;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
