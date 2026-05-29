@@ -1,0 +1,356 @@
+.body-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+header {
+    height: 90px;
+    width: 100%;
+    margin-bottom: 30px;
+
+}
+
+.header-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+}
+
+.sub-header {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-brand {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.under-sub-header-1 {
+    font-size: 0.7rem;
+}
+
+.filter-button {
+    color: black;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: rgb(56, 63, 83);
+    border: 1px solid white;
+    cursor: pointer;
+    color: white;
+    outline: none;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #0b111e;
+    color: #ffffff;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    /* max-width: 1200px; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.top-section {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&q=80&w=1000') no-repeat center center;
+    background-size: cover;
+    border-radius: 16px;
+    position: relative;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+}
+
+
+.hero-banner::after {
+    content: "AURORA";
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    font-size: 7rem;
+    font-weight: 900;
+    opacity: 0.08;
+    letter-spacing: -5px;
+}
+
+.hero-content {
+    align-self: flex-end;
+    margin-left: auto;
+    text-align: right;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-btn .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+
+.product-card {
+    background-color: rgba(20, 28, 45, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.image-container {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: #1a2333;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.85;
+}
+
+.product-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: linear-gradient(to bottom, rgba(20, 28, 45, 0.4), rgba(12, 18, 30, 0.9));
+    flex-grow: 1;
+}
+
+.product-name {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.product-desc {
+    font-size: 0.75rem;
+    color: #8fa0bc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.swatches {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    align-items: center;
+}
+
+.swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+}
+
+.swatch-label {
+    font-size: 0.7rem;
+    color: #8fa0bc;
+    text-transform: uppercase;
+}
+
+.product-price {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8fa0bc;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.features-ribbon {
+    background-color: rgba(14, 22, 37, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding-right: 15px;
+}
+
+.feature-item:last-child {
+    border-right: none;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    color: #8fa0bc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-text h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.feature-text p {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+
+.footer {
+    background-color: rgba(7, 11, 19, 0.9);
+    border-radius: 12px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-mark {
+    font-weight: 900;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-nav a {
+    color: #8fa0bc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: white;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #8fa0bc;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: white;
+}
