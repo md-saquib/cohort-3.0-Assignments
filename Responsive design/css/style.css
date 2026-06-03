@@ -1,0 +1,1093 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+
+}
+
+
+
+body,
+html {
+    width: 100%;
+    height: 100vh;
+    background-color: gray;
+    position: relative;
+
+}
+
+/* This is for navigation bar full screen */
+@media(min-width:35rem) {
+
+    .header__wrapper {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        height: 80px;
+        background-color: rgb(231, 231, 231);
+        z-index: 100;
+        transition: width 0.3s ease;
+
+    }
+
+    .header__wrapper-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .header__left>.menu {
+        display: none;
+    }
+
+    .header__left {
+        width: 23%;
+    }
+
+    .header-menu-left {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        font-size: 1rem;
+
+
+    }
+
+    .header-menu-left>div {
+        cursor: pointer;
+    }
+
+    .header-menu-left>div:hover i {
+        transform: rotate(180deg);
+        transition: transform 0.7s ease;
+    }
+
+    .header-menu-right {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        font-size: 0.8rem;
+    }
+
+    .header__right {
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .header-cart>i {
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: 0.5s ease;
+
+    }
+
+    .header-cart>i:hover {
+        transition: 0.5s ease;
+
+        transform: scale(1.1);
+    }
+
+    .mega-menu {
+        display: none;
+        position: absolute;
+        left: -30px;
+        top: 100%;
+        width: 99vw;
+        background-color: white;
+        z-index: 1000;
+        padding: 20px;
+        height: 70vh;
+    }
+
+    .menu-content {
+        display: flex;
+        gap: 40px;
+    }
+
+    .column,
+    .column-featured {
+        width: 33%;
+    }
+
+    .column>h3 {
+        padding: 20px 0px;
+    }
+
+    .products {
+        display: flex;
+        gap: 15px;
+    }
+
+    .box {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .nav-shop-wrapper {
+        position: relative;
+        padding: 30px 0;
+
+    }
+
+    .nav-shop-wrapper:hover .mega-menu,
+    .mega-menu:hover {
+        display: block;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-items>div {
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .page-container {
+        display: none;
+        position: absolute;
+        left: -120px;
+        top: 100%;
+        width: 98.9vw;
+        background-color: white;
+        z-index: 1000;
+        padding: 20px;
+        height: 70vh;
+
+    }
+
+    .nav-learn-wrapper:hover .page-container,
+    .page-container:hover {
+        display: block
+    }
+
+    /* Flexbox Grid Layout */
+    .flex-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        padding-top: 50px;
+    }
+
+    .grid-item {
+        flex: 1;
+        /* min-width: 280px; */
+        text-align: center;
+        margin-bottom: 20px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .grid-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .grid-item-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .item-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        margin-bottom: 15px;
+        aspect-ratio: 3 / 2;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .item-caption {
+        font-size: 1.1rem;
+        color: #333;
+        font-weight: normal;
+    }
+
+    .fa-notdog {
+        display: none !important;
+    }
+
+
+
+}
+
+/* This is for navigation bar responsive  screen */
+
+
+@media (max-width: 35rem) {
+    .header__wrapper {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        height: 80px;
+        background-color: rgb(231, 231, 231);
+        transition: width 0.3s ease;
+    }
+
+    .header__wrapper-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 1rem;
+    }
+
+    .header__left>.menu {
+        display: block;
+    }
+
+
+    .header__left {
+        position: relative;
+    }
+
+    .header-menu-right {
+        display: none;
+    }
+
+    .shop {
+        display: none;
+    }
+
+
+    .header-menu-left {
+        height: 86vh;
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: -17px;
+        width: 70vw;
+        background-color: white;
+        overflow: scroll;
+        z-index: 1000;
+        border-radius: 0px 18px 18px 0px;
+    }
+
+    .menu:hover+.header-menu-left,
+    .header-menu-left:hover {
+        display: block;
+    }
+
+    .nav-learn-wrapper {
+        display: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .header-cart>i {
+        font-size: 2.5rem;
+        cursor: pointer;
+
+    }
+
+    .menu i {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+
+
+    .page-container {
+        display: none;
+    }
+
+    .menu-content {
+        display: block;
+        padding: 20px;
+    }
+
+    .column {
+        margin-bottom: 25px;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .menu-items>div {
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 1rem;
+    }
+
+    .products {
+        display: flex;
+        padding: 30px 0;
+    }
+
+    .product {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .box {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+
+    .product>span {
+        font-size: 0.7rem;
+    }
+
+    .menu-container {
+        font-family: Arial, sans-serif;
+        max-width: 300px;
+        padding: 20px;
+        border-top: 1px solid #ccc;
+    }
+
+    .menu-container h3 {
+        font-size: 0.9rem;
+        color: #333;
+        letter-spacing: 1px;
+    }
+
+    .menu-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu-list li {
+        margin-bottom: 15px;
+    }
+
+    .menu-list a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.1rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #333;
+        border-radius: 50%;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .btn-green {
+        background-color: #90EE90;
+        color: #333;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-green:hover {
+        background-color: #7cfc00;
+        box-shadow: 0 0 15px rgba(144, 238, 144, 0.8),
+            0 0 5px rgba(144, 238, 144, 0.5);
+    }
+
+}
+
+
+
+/* Now body of the page  */
+
+@media(min-width:35rem) {
+    .hero-section {
+        background-image: url('https://www.twoleavestea.com/cdn/shop/files/Cafes_and_Partners_mobile_hero_1.webp?v=1773752476&width=1350.0');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 5%;
+    }
+
+    .hero-content {
+        max-width: 500px;
+        color: white;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border-radius: 50px;
+        border: none;
+        background: white;
+        color: #333;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .crafted-section {
+        background-color: #d1d0c5;
+        /* Matches the beige tone in the image */
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        max-width: 700px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+    }
+
+    .cards-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        /* Allows wrapping on small screens */
+    }
+
+    .card {
+        background: #fff;
+        border: 1px solid #aaa;
+        border-radius: 12px;
+        padding: 30px;
+        width: 250px;
+        /* Fixed width for desktop */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+
+    .carousel-container h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .partner-grid {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scrollbar-width: none;
+        padding: 0 20px;
+    }
+
+
+
+
+    .card-partner {
+        flex: 0 0 300px;
+        background-color: var(--bg-color);
+        border: 2px solid #000;
+        padding: 20px;
+        border-radius: 12px;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .teas-container {
+        font-family: sans-serif;
+        border-top: 2px solid #000;
+        width: 100%;
+        background-color: #FBF9EB;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .teas-container h2 {
+        font-size: 3rem;
+
+    }
+
+    .display-card-container {
+        width: 60%;
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tab-btn {
+        padding: 10px 20px;
+        border: 2px solid #000;
+        background: #cce5ff;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .tab-btn.active {
+        background: #8bb9f5;
+        font-weight: bold;
+    }
+
+    .display-card {
+        display: flex;
+        width: 100%;
+        max-width: 700px;
+        height: 500px;
+        flex-shrink: 0;
+        border: 1px solid black;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .icon-side {
+        background-color: var(--bg-color);
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+        background: white;
+        border-radius: 50%;
+        border: 2px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-side {
+        background-color: var(--bg-color);
+        flex: 1.5;
+        padding: 30px;
+    }
+
+    .info-side>p {
+        margin: 40px 0;
+    }
+
+    .meta-section {
+        margin-top: 20px;
+        padding-top: 10px;
+    }
+
+    .meta-section h4 {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #000;
+    }
+
+    .meta-section p {
+        font-size: 0.7rem;
+        color: #333;
+    }
+
+    .support-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+        background-color: #2b2b50;
+        padding: 40px;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        z-index: 1;
+
+    }
+
+    .support-card-container {
+        display: flex;
+        gap: 10px;
+    }
+
+    .support-card {
+        /* flex: 1; */
+        display: flex;
+        flex-direction: column;
+        /* overflow: hidden; */
+        width: 300px;
+        height: 500px;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .image-area {
+        width: 100%;
+        height: 500px;
+    }
+
+    .image-area img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .text-area {
+        background-color: #c9b0e2;
+        padding: 20px;
+        flex-grow: 1;
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        cursor: pointer;
+    }
+
+    .text-area>p {
+        font-size: 0.7rem;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+    }
+
+    .text-area:hover>p {
+        max-height: 100px;
+        opacity: 1;
+        margin-top: 10px;
+    }
+
+    .text-area h3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: serif;
+        margin-bottom: 10px;
+    }
+
+    .text-area h3 button {
+        transform: rotate(45deg);
+    }
+
+
+
+    .icon-btn {
+        border-radius: 50%;
+        border: 1px solid #000;
+        background: transparent;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+    }
+
+
+}
+
+@media (max-width:35rem) {
+    .hero-section {
+        background-image: url('https://www.twoleavestea.com/cdn/shop/files/Cafes_and_Partners_mobile_hero_1.webp?v=1773752476&width=1350.0');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        /* padding: 0 0 10% 0; */
+    }
+
+    .hero-content {
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+    }
+
+    .hero-content>h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border-radius: 50px;
+        border: none;
+        background: white;
+        color: #333;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+
+    .crafted-section {
+        background-color: #d1d0c5;
+        /* Matches the beige tone in the image */
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        max-width: 700px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+    }
+
+    .cards-container {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        /* Allows wrapping on small screens */
+    }
+
+    .card {
+        background: #fff;
+        border: 1px solid #aaa;
+        border-radius: 12px;
+        padding: 30px;
+        width: 45%;
+        height: 340px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: 70vh;
+        /* overflow: hidden; */
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+
+    .carousel-container h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .partner-grid {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scrollbar-width: none;
+        padding: 0 20px;
+    }
+
+
+
+
+    .card-partner {
+        flex: 0 0 300px;
+        background-color: var(--bg-color);
+        border: 2px solid #000;
+        padding: 20px;
+        border-radius: 12px;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+    .teas-container {
+        font-family: sans-serif;
+        border-top: 2px solid #000;
+        width: 100%;
+        background-color: #FBF9EB;
+        height: 120vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .teas-container h2 {
+        font-size: 3rem;
+        text-align: center;
+
+    }
+
+    .display-card-container {
+        width: 90%;
+        display: flex;
+        gap: 20px;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        height: 800px;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tab-btn {
+        padding: 10px 20px;
+        border: 2px solid #000;
+        background: #cce5ff;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .tab-btn.active {
+        background: #8bb9f5;
+        font-weight: bold;
+    }
+
+    .display-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 750px;
+        flex-shrink: 0;
+        border: 1px solid black;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .icon-side {
+        background-color: var(--bg-color);
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+        background: white;
+        border-radius: 50%;
+        border: 2px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-side {
+        background-color: var(--bg-color);
+        flex: 1.5;
+        padding: 30px;
+    }
+
+    .info-side>p {
+        margin: 40px 0;
+    }
+
+    .meta-section {
+        margin-top: 20px;
+        padding-top: 10px;
+    }
+
+    .meta-section h4 {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #000;
+    }
+
+    .meta-section p {
+        font-size: 0.7rem;
+        color: #333;
+    }
+
+
+    .support-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+        background-color: #2b2b50;
+        padding: 40px;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        z-index: 1;
+
+    }
+    .support-grid h1{
+        text-align: center;
+    }
+
+    .support-card-container {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        height: 60vh;
+        overflow-x: auto;
+
+    }
+
+    .support-card {
+
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 100%;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .image-area {
+        width: 100%;
+        height: 500px;
+    }
+
+    .image-area img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .text-area {
+        background-color: #c9b0e2;
+        padding: 20px;
+        flex-grow: 1;
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        cursor: pointer;
+    }
+
+    .text-area>p {
+        font-size: 0.7rem;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+    }
+
+    .text-area:hover>p {
+        max-height: 100px;
+        opacity: 1;
+        margin-top: 10px;
+    }
+
+    .text-area h3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: serif;
+        margin-bottom: 10px;
+    }
+
+    .text-area h3 button {
+        transform: rotate(45deg);
+    }
+
+
+
+    .icon-btn {
+        border-radius: 50%;
+        border: 1px solid #000;
+        background: transparent;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+    }
+
+
+
+
+
+}
