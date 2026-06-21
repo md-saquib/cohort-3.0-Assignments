@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Master System Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <h1>Task Manager</h1>
+        <div class="theme-switch">
+            <p>Theme :
+
+            </p>
+            <button class="theme-btn">dark</button>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="task-create-module ">
+            <h2>Task Creation Module</h2>
+            <form action="" id="task-creater-form">
+                <input type="text" class="title" placeholder="Enter Task title">
+                <select name="" id="tag">
+                    <option value="UI/UX">UI/UX</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="Backend">Backend</option>
+                </select>
+
+                <button class="task-add-btn">Add Task</button>
+            </form>
+        </div>
+
+        <div class="task-monitor">
+
+            <div class="function-area">
+                <input type="text" id="task-title-input" class="title-input" placeholder="Enter task title...">
+
+                <select name="filter" id="task-category-select" class="category-dropdown">
+                    <option value="">Filter By Category</option>
+                    <option value="UI/UX">UI/UX</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="Backend">Backend</option>
+                </select>
+
+                <button type="button" id="clear-all-btn" class="btn btn-clear-all">Clear All Tasks</button>
+            </div>
+
+            <div class="task-record-area">
+                <p class="counter-item">Total Tasks: <span id="count-total">0</span></p>
+                <p class="counter-item">Completed: <span id="count-completed" class="text-success">0</span></p>
+                <p class="counter-item">Pending: <span id="count-pending" class="text-warning">0</span></p>
+            </div>
+
+            <div id="task-cards-container" class="task-cards-list">
+
+            </div>
+        </div>
+
+    </main>
+
+    <h1>DOM, Events & Browser Architecture Lab</h1>
+
+
+    <div class="extra-task">
+
+        <section>
+            <h2>2️⃣ Attributes vs Properties</h2>
+            <p>Open your browser console (F12) to see attribute manipulations and evaluation differences.</p>
+
+            <div id="task-card-1" class="extra-task-card" data-id="tk-902" data-status="pending"
+                data-category="engineering">
+                <h3>Task Card</h3>
+                <p>Check console logs for data attribute mutations.</p>
+            </div>
+
+            <div class="demo-input-container">
+                <label for="demo-input"><strong>Type something here:</strong> </label>
+                <input type="text" id="demo-input" value="OriginalHTMLValue">
+                <button id="check-values-btn">Compare
+                    Property vs Attribute</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>7️⃣ Event Propagation Demonstration</h2>
+            <p>Click the green <strong>Child Button</strong> to test propagation. Look at your browser console to
+                verify execution orders.</p>
+
+            <div id="grandparent">
+                Grandparent
+                <div id="parent">
+                    Parent
+                    <br>
+                    <button id="child-btn">Child Button</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>8️⃣ Browser Rendering Pipeline Section</h2>
+            <p>Visual map detailing the translation paths from code strings to visual layout trees.</p>
+
+            <div class="pipeline-container">
+
+                <div class="pipeline-track html-track">
+                    <div class="pipeline-card">HTML</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="pipeline-card">Parsing</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="pipeline-card">Tokenization</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="pipeline-card">DOM Tree</div>
+                </div>
+
+                <div class="operator-plus">+</div>
+
+                <div class="pipeline-track css-track">
+                    <div class="pipeline-card">CSS</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="pipeline-card">CSSOM Tree</div>
+                </div>
+
+                <div class="arrow-right">➔</div>
+
+                <div class="pipeline-track render-track">
+                    <div class="pipeline-card">DOM Tree + CSSOM Tree</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="pipeline-card">Render Tree</div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
