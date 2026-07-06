@@ -40,8 +40,8 @@
     <div class="right-panel">
 
         <nav class="right-panel-top">
-            <h3 class="user-id">saquib@gmail.com</h3>
-            <button><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            <h3 id='user-name' class="user-id"></h3>
+            <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </nav>
 
         <div class="right-panel-bottom">
@@ -54,19 +54,19 @@
                 <div class="current-balance">
                     <i class="fa-solid fa-people-roof"></i>
                     <p>Current Balance</p>
-                    <h1 id="">$<span id="balance">0.00</span></h1>
+                    <h1><span class="currency">$</span><span id="balance">0.00</span></h1>
                 </div>
 
                 <div class="total-income">
                     <i class="fa-solid fa-arrow-trend-up"></i>
                     <p>Total Income</p>
-                    <h1>$ <span id="income">0.00</span></h1>
+                    <h1><span class="currency">$</span> <span id="income">0.00</span></h1>
                 </div>
 
                 <div class="total-expenses">
                     <i class="fa-solid fa-arrow-trend-down"></i>
                     <p>Total Expences</p>
-                    <h1 id="">$<span id="expenses">0.00</span></h1>
+                    <h1><span class="currency">$</span><span id="expenses">0.00</span></h1>
                 </div>
 
                 <div class="total-transaction">
@@ -144,19 +144,19 @@
                 <form class="settings-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="full-name">Full Name</label>
-                            <input type="text" id="full-name" value="saquib@gmail.com" class="form-control">
+                            <label for="full-name">Update Name</label>
+                            <input type="text" id="full-name" value="" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="primary-currency">Primary Currency</label>
                             <div class="select-container">
                                 <select id="primary-currency" class="form-select">
-                                    <option value="USD" selected>USD ($)</option>
-                                    <option value="EUR">EUR (€)</option>
-                                    <option value="GBP">GBP (£)</option>
-                                    <option value="INR">INR (₹)</option>
-                                    <option value="JPY">JPY (¥)</option>
+                                    <option value="$" selected>USD ($)</option>
+                                    <option value="€">EUR (€)</option>
+                                    <option value="£">GBP (£)</option>
+                                    <option value="₹">INR (₹)</option>
+                                    <option value="¥">JPY (¥)</option>
                                 </select>
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
@@ -164,7 +164,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn-save">Save Changes</button>
+                        <button id="profile-btn" type="submit" class="btn-save">Save Changes</button>
                     </div>
                 </form>
             </main>
@@ -222,6 +222,57 @@
         </div>
 
 
+    </div>
+
+    <div id="login-card" class="login-card">
+        <div>
+            <h1>Welcome Back</h1>
+            <div class="subtitle">Login to FinTrack Pro</div>
+
+            <div id="login-msg" class="message"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-blue">Login</button>
+            </form>
+
+            <div class="toggle-text">
+                Don't have an account? <a href="#" id="to-register">Register here</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="register-card" class="login-card hidden">
+
+        <div>
+            <h1>Create Account</h1>
+            <div class="subtitle">Join FinTrack Pro</div>
+
+            <div id="register-msg" class="message"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Choose a Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit" class="btn btn-green">Register</button>
+            </form>
+
+            <div class="toggle-text">
+                Already have an account? <a href="#" id="to-login">Login here</a>
+            </div>
+        </div>
     </div>
     <script src="js/script.js"></script>
 

@@ -94,6 +94,8 @@ const config = {
 
 const toggleBtn = document.querySelector('#theme-button');
 
+const userNameDisplay = document.querySelector('#user-name');
+
 // 4. Render the Chart
 const cashFlowChart = new Chart(ctx, config);
 
@@ -101,17 +103,12 @@ const cashFlowChart = new Chart(ctx, config);
 dashboard.addEventListener('click', () => {
     settingPanel.style.display = 'none';
     dashboardPanel.style.display = 'block';
-    console.log("i am dashboard")
-
 })
 
 // this event used to open the setting panel
 setting.addEventListener('click', () => {
     settingPanel.style.display = 'block';
     dashboardPanel.style.display = 'none';
-    console.log("i am dashboard")
-
-
 })
 
 let cardData = getData('cardData') ?? [];
@@ -190,7 +187,7 @@ function Ui(cardData) {
                         <p class="card-date"> ${el.date} </p>
                         <p class="card-description"> ${el.description} </p>
                         <p class="card-category"> ${el.category} </p>
-                        <p class="${el.type.toLowerCase() === 'expense' ? 'card-amount-expense' : 'card-amount-income'}"> ${el.type.toLowerCase() === 'expense' ? '-' : '+'}${el.amount}</p>
+                        <p class="${el.type.toLowerCase() === 'expense' ? 'card-amount-expense' : 'card-amount-income'}"> <span class="currency">$</span> ${el.type.toLowerCase() === 'expense' ? '-' : '+'}${el.amount}</p>
                          <i class="fa-solid fa-trash-can"></i>
            </div>`
         });
@@ -290,3 +287,156 @@ toggleBtn.addEventListener('click', () => {
     // Set the new attribute value
     document.documentElement.setAttribute('data-theme', newTheme);
 });
+
+
+
+
+
+
+
+
+
+// login and logout  Elements
+const loginCard = document.getElementById('login-card');
+const registerCard = document.getElementById('register-card');
+
+const toRegisterLink = document.getElementById('to-register');
+const toLoginLink = document.getElementById('to-login');
+
+const registerForm = document.getElementById('register-form');
+const loginForm = document.getElementById('login-form');
+
+const registerMsg = document.getElementById('register-msg');
+const loginMsg = document.getElementById('login-msg');
+
+// This element select for profile update
+const profileName = document.querySelector('#full-name');
+const primaryCurrency = document.querySelector('#primary-currency');
+
+
+// Toggle View Logic
+toRegisterLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    clearMessages();
+    loginCard.classList.add('hidden');
+    registerCard.classList.remove('hidden');
+});
+
+toLoginLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    clearMessages();
+    registerCard.classList.add('hidden');
+    loginCard.classList.remove('hidden');
+});
+
+function clearMessages() {
+    registerMsg.className = 'message';
+    registerMsg.innerText = '';
+    loginMsg.className = 'message';
+    loginMsg.innerText = '';
+    registerForm.reset();
+    loginForm.reset();
+}
+
+// Registration Logic
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('register-username').value.trim();
+    const password = document.getElementById('register-password').value;
+
+    // Get existing users database or initialize a new array
+    const users = JSON.parse(localStorage.getItem('fintrack_users')) || [];
+
+    // Check if user already exists
+    const userExists = users.some(user => user.username.toLowerCase() === username.toLowerCase());
+
+    if (userExists) {
+        registerMsg.className = 'message error';
+        registerMsg.innerText = 'Username is already taken!';
+    } else {
+        // Add new user to storage array
+        users.push({ username, password });
+        localStorage.setItem('fintrack_users', JSON.stringify(users));
+
+        registerMsg.className = 'message success';
+        registerMsg.innerText = 'Registration successful! Redirecting to login...';
+
+        // Automatically switch to login screen after 1.5 seconds
+        setTimeout(() => {
+            toLoginLink.click();
+            document.getElementById('login-username').value = username;
+        }, 1500);
+    }
+});
+
+// Login Logic
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    // Get existing users database
+    const users = JSON.parse(localStorage.getItem('fintrack_users')) || [];
+
+    // Find valid match
+    const matchedUser = users.find(user => user.username.toLowerCase() === username.toLowerCase() && user.password === password);
+
+    if (matchedUser) {
+        loginMsg.className = 'message success';
+        loginMsg.innerText = `Welcome back, ${matchedUser.username}! Login successful.`;
+
+        userNameDisplay.textContent = matchedUser.username;
+        loginCard.classList.add('hidden');
+
+        // Track current active session
+        localStorage.setItem('fintrack_session', JSON.stringify({ loggedIn: true, user: matchedUser.username }));
+    } else {
+        loginMsg.className = 'message error';
+        loginMsg.innerText = 'Invalid username or password.';
+    }
+});
+
+
+
+// Function to check if a user is already logged in
+function checkUserSession() {
+    const sessionData = localStorage.getItem('fintrack_session');
+
+    if (sessionData) {
+        const session = JSON.parse(sessionData);
+
+        if (session.loggedIn) {
+
+            loginCard.classList.add('hidden');
+            userNameDisplay.textContent = session.user;
+            profileName.value = session.user;
+
+        } else {
+            alert("No active session found. User needs to login.");
+        }
+    }
+}
+
+// Run the check when the page opens
+window.addEventListener('DOMContentLoaded', checkUserSession);
+
+
+function handleLogout() {
+    localStorage.removeItem('fintrack_session');
+    window.location.reload();
+}
+
+//  logout button
+document.getElementById('logout-btn').addEventListener('click', handleLogout);
+
+
+//profile data save 
+
+document.querySelector('#profile-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    userNameDisplay.textContent = profileName.value;
+    document.querySelectorAll('.currency').forEach(el => el.textContent = primaryCurrency.value);
+
+})
