@@ -1,0 +1,886 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(224, 224, 224);
+    position: relative;
+}
+
+
+
+:root {
+    --bg-main: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+
+    /* Text Colors */
+    --text-primary: #1a1d20;
+    --text-muted: #5f666d;
+    --text-expense: #8b0000;
+    --text-income: #10b981;
+    /* Dark red for negative amounts */
+
+    /* Action Button Colors */
+    --btn-edit: #0d6efd;
+    --btn-delete: #8b0000;
+
+    /* Layout & Spacing */
+    --radius-lg: 16px;
+    --radius-md: 8px;
+    --padding-container: 24px;
+
+    --bg-main: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+
+    /* Text Colors */
+    --text-primary: #1a1d20;
+
+    /* Action Element Colors */
+    /* --btn-bg: #000000; */
+    /* Pure black button from mockup */
+    --btn-hover: #1a1d20;
+
+    /* Layout Sizing & Radis */
+    --radius-lg: 12px;
+    --radius-md: 6px;
+    --container-padding: 32px;
+
+}
+
+[data-theme="dark"] {
+    --bg-dark: #1e1e24;
+    --bg-hover: #d5d5d5;
+    --text-main: #ffffff;
+    --text-muted: #8a8a93;
+
+    --bg-main: #0f0f12;
+    --text-theme: #0f0a0a;
+    /* Main app background */
+    --bg-card: #1e1e24;
+    /* Dashboard grid cards */
+    --text-main: #ffffff;
+    --text-muted: #8a8a93;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --border-color: #2a2a32;
+
+    --btn-bg: #3b82f6;
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --border-color: #e2e8f0;
+    --text-main: #1a202c;
+    --text-muted: #718096;
+
+}
+
+/* 3. LIGHT THEME */
+[data-theme="light"] {
+    --bg-dark: #ffffff;
+    --bg-hover: #3f3f3f;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-theme: #0f0a0a;
+    --text-theme: #ffffff;
+    --bg-main: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --accent-blue: #2563eb;
+    --accent-green: #16a34a;
+    --accent-red: #dc2626;
+    --border-color: #e2e8f0;
+    --btn-bg: #3b82f6;
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --border-color: #e2e8f0;
+    --text-main: #1a202c;
+    --text-muted: #718096;
+
+}
+
+/* Panel Layout */
+.left-panel {
+    width: 260px;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+}
+
+.left-panel-top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Brand Section */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+}
+
+.brand-logo {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.brand-name h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.brand-name p {
+    margin: 0;
+    font-size: 0.8rem;
+
+}
+
+/* Navigation Items (Dashboard & Settings) */
+
+.dashboard,
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.3rem;
+}
+
+.dashboard:hover,
+.setting:hover {
+    color: var(--text-main);
+}
+
+/* Universal Button Reset */
+.left-panel button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+}
+
+/* Bottom Action Button */
+.left-panel-bottom button {
+    width: 100%;
+    background-color: var(--btn-bg);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.left-panel-bottom button:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+
+
+/* Right Panel Wrapper */
+.right-panel {
+    /* flex: 1; */
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    color: var(--text-muted);
+    padding: var(--padding-side);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    font-family: sans-serif;
+    position: relative;
+    left: 260px;
+    width: calc(100% - 260px);
+}
+
+.right-panel-bottom {
+    padding: 2rem;
+}
+
+/* --- TOP NAVIGATION --- */
+.right-panel-top {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--bg-dark);
+}
+
+.user-id {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.right-panel-top button {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.right-panel-top button:hover {
+    color: var(--text-main);
+}
+
+/* --- TITLE BLOCK --- */
+.title h1 {
+    margin: 0 0 0.25rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.title p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- CARD DISPLAY (Grid) --- */
+.card-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Base Card Styling for all 4 KPI Cards */
+.current-balance,
+.total-income,
+.total-expenses,
+.total-transaction {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.total-income i,
+.total-income h1 {
+    color: var(--accent-green);
+}
+
+.total-expenses i,
+.total-expenses h1 {
+    color: var(--accent-red);
+}
+
+.current-balance i,
+.total-transaction i {
+    color: var(--accent-blue);
+}
+
+.card-display i {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.card-display p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card-display h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* --- MIDDLE AREA (Chart & Settings Side-by-Side) --- */
+.middle-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Chart gets double space */
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Chart Container Placeholder */
+.cash-flow-chart {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    min-height: 300px;
+}
+
+.cash-flow-chart h1,
+.clear-transection-card h1 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Preferences & Reset Actions Card */
+.clear-transection-card {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: fit-content;
+}
+
+/* Theme Block Row */
+.theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.theme button {
+    background-color: var(--bg-hover);
+    color: var(--text-theme);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-transform: capitalize;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer
+}
+
+
+
+/* Reset Button block */
+.reset-button {
+    margin-top: auto;
+}
+
+.reset-button button {
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reset-button button:hover {
+    opacity: 0.9;
+}
+
+/* Responsive adjustments for laptop screens down to mobile */
+@media (max-width: 1024px) {
+    .middle-area {
+        grid-template-columns: 1fr;
+        /* Stack chart and preferences vertically on smaller views */
+    }
+}
+
+
+
+/* this for right panel bottom card ui portion  */
+
+
+/* 2. Container Layout */
+.all-transation-ui {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--padding-container);
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.all-transation-ui h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.noTransaction {
+    color: var(--text-muted);
+}
+
+/* 3. Filters & Search Section */
+.filter-search {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.search-category,
+.search-by-income-expence {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-dark);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 8px 14px;
+    transition: border-color 0.2s;
+}
+
+.search-category:focus-within,
+.search-by-income-expence:focus-within {
+    border-color: #ced4da;
+}
+
+/* Search Input */
+.search-category {
+    flex: 1;
+    max-width: 300px;
+}
+
+.search-category i {
+    color: var(--text-muted);
+    margin-right: 10px;
+}
+
+.category-search {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+.category-search:focus {
+    outline: none;
+}
+
+/* Dropdown Select */
+.search-by-income-expence {
+    position: relative;
+    min-width: 160px;
+    justify-content: space-between;
+    flex: 2;
+}
+
+.search-by-income-expence select {
+    background: var(--bg-dark);
+    width: 100%;
+    font-size: 15px;
+    color: var(--text-muted);
+    cursor: pointer;
+    appearance: none;
+    /* Hide default browser arrow */
+    padding-right: 20px;
+}
+
+.search-by-income-expence select:focus {
+    outline: none;
+}
+
+.search-by-income-expence i {
+    position: absolute;
+    right: 14px;
+    pointer-events: none;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+/* 4. Grid System for Table Columns */
+.cards-headers,
+.card {
+    display: grid;
+    /* Defining fixed proportions for each column matching the UI image */
+    grid-template-columns: 1.5fr 2.5fr 2fr 1.5fr 1fr;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+/* Headers styling */
+.cardS-headers {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 8px;
+}
+
+.cardS-headers p {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* Row (Card) Data styling */
+.card {
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+
+.card-date {
+    color: var(--text-primary);
+}
+
+.card-description {
+    font-weight: 700;
+}
+
+/* Category Badge styling */
+.card-category {
+    display: inline-block;
+    background-color: #e8f0fe;
+    /* Light blue highlight background */
+    color: #1967d2 !important;
+    /* Sharp blue text color */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px !important;
+    font-weight: 500;
+    width: fit-content;
+}
+
+/* Amount text */
+.card-amount-expense {
+    color: var(--text-expense);
+    font-weight: 600;
+}
+
+.card-amount-income {
+    color: var(--text-income);
+    font-weight: 600;
+}
+
+
+/* Action Icons styling */
+.card p:last-child {
+    display: flex;
+    gap: 16px;
+}
+
+.card i {
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.1s ease;
+}
+
+.card i:active {
+    transform: scale(0.9);
+}
+
+.card .fa-pencil {
+    color: var(--btn-edit);
+}
+
+.card .fa-trash-can {
+    color: var(--btn-delete);
+}
+
+
+/* This porsition for basically use Setting uiii  */
+
+
+
+
+/* 2. Container Layout */
+.settings-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    width: 100%;
+    margin: 40px auto;
+    padding: 3rem 2rem;
+    display: none;
+}
+
+/* Header Text styling */
+.settings-header {
+    margin-bottom: 24px;
+    color: var(--text-muted);
+
+}
+
+.settings-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+}
+
+.settings-header p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* 3. The Main Form Card Block */
+.settings-card {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    padding: var(--container-padding);
+}
+
+.settings-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* 4. Two-Column Form Field Alignment */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Inputs and Select Layout Elements */
+.form-control,
+.select-container {
+    background-color: var(--bg-dark);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.form-control {
+    font-size: 14px;
+    color: var(--text-primary);
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #ced4da;
+}
+
+/* Custom Dropdown Styles mimicking transaction app dropdowns */
+.select-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-select {
+    background: var(--bg-dark);
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    appearance: none;
+    /* Disables browser native drop arrow wrapper */
+    padding-right: 24px;
+}
+
+.form-select:focus {
+    outline: none;
+}
+
+.select-container i {
+    position: absolute;
+    right: 14px;
+    pointer-events: none;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+/* 5. Button Action Field Elements */
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-save {
+    background-color: var(--btn-bg) !important;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.btn-save:active {
+    transform: scale(0.98);
+}
+
+/* Responsive adjustment for clean viewports */
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+
+
+
+
+
+/* Modal Layout */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    display: none;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-overlay);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-container {
+    background-color: var(--bg-dark);
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+}
+
+/* Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-muted) !important;
+
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+/* Inputs, Selects, and Date pickers */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    background-color: var(--bg-dark);
+
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Placeholder styles */
+input::placeholder,
+select:invalid {
+    color: var(--text-muted);
+}
+
+/* Focus state for better accessibility */
+input:focus,
+select:focus {
+    border-color: #a0aec0;
+    box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.15);
+    background-color: var(--bg-dark);
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    background-color: var(--btn-bg);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
