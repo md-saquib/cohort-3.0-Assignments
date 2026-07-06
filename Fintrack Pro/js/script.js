@@ -187,7 +187,7 @@ function Ui(cardData) {
                         <p class="card-date"> ${el.date} </p>
                         <p class="card-description"> ${el.description} </p>
                         <p class="card-category"> ${el.category} </p>
-                        <p class="${el.type.toLowerCase() === 'expense' ? 'card-amount-expense' : 'card-amount-income'}"> <span class="currency">$</span> ${el.type.toLowerCase() === 'expense' ? '-' : '+'}${el.amount}</p>
+                        <p class="${el.type.toLowerCase() === 'expense' ? 'card-amount-expense' : 'card-amount-income'}">  ${el.type.toLowerCase() === 'expense' ? '-' : '+'}${el.amount}</p>
                          <i class="fa-solid fa-trash-can"></i>
            </div>`
         });
