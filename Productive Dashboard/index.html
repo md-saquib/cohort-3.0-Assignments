@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productive Dashboard</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="nav-right">
+            <div class="nav-datetime" id="navDateTime">
+                <span id="navDate"></span>
+                <span id="navTime"></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <div class="board">
+
+        <div class="grid">
+            <div class="card card1" data-feature="todo">
+                <div>
+                    <div class="card-icon">✓</div>
+                    <h3 class="card-title">Todo List</h3>
+                    <p class="card-desc">Quick tasks, checked off as you go.</p>
+                </div>
+                <div class="card-footer">3 open</div>
+            </div>
+            <div class="card card6" data-feature="planner">
+                <div>
+                    <div class="card-icon">🗓</div>
+                    <h3 class="card-title">Daily Planner</h3>
+                    <p class="card-desc">Block your day, hour by hour.</p>
+                </div>
+                <div class="card-footer">Today</div>
+            </div>
+            <div class="card card3" data-feature="motivation">
+                <div>
+                    <div class="card-icon">✦</div>
+                    <h3 class="card-title">Motivation</h3>
+                    <p class="card-desc">A line to carry into the day.</p>
+                </div>
+                <div class="card-footer">New daily</div>
+            </div>
+            <div class="card card4" data-feature="pomodoro">
+                <div>
+                    <div class="card-icon">◔</div>
+                    <h3 class="card-title">Pomodoro</h3>
+                    <p class="card-desc">Focus in sets, rest in between.</p>
+                </div>
+                <div class="card-footer">25:00 ready</div>
+            </div>
+            <div class="card card5" data-feature="goals">
+                <div>
+                    <div class="card-icon">◆</div>
+                    <h3 class="card-title">Daily Goals</h3>
+                    <p class="card-desc">The few things that matter today.</p>
+                </div>
+                <div class="card-footer" id="goalsFooter">0 of 4</div>
+            </div>
+
+            <div class="card card2" data-feature="weather">
+                <div>
+                    <div class="card-icon"><i class="fa-regular fa-cloud"></i></div>
+                    <h3 class="card-title">Weather</h3>
+                    <p class="card-desc" id="weatherCardDesc">Retrieving local weather...</p>
+                </div>
+                <div class="card-footer" id="weatherCardFooter">--°C · Loading</div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Feature Views -->
+    <section class="feature-view hidden" data-feature="todo">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Todo List</h2>
+        </div>
+        <div class="feature-body">
+            <div class="todo-input-container">
+                <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off">
+                <button id="addTodoBtn"><i class="fa-solid fa-plus"></i> Add Task</button>
+            </div>
+            <ul id="todoList" class="todo-list"></ul>
+        </div>
+    </section>
+
+    <section class="feature-view hidden" data-feature="planner">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Daily Planner</h2>
+        </div>
+        <div class="feature-body">
+            <div id="plannerContainer" class="planner-container"></div>
+        </div>
+    </section>
+
+    <section class="feature-view hidden" data-feature="motivation">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Motivation Quote</h2>
+        </div>
+        <div class="feature-body motivation-body">
+            <div class="quote-card-wrapper">
+                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                <div id="quoteLoader" class="quote-loader hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching inspiring thoughts...</p>
+                </div>
+                <blockquote id="quoteContent" class="quote-content">
+                    <p id="quoteText">Loading daily inspiration...</p>
+                    <cite id="quoteAuthor">— Loading...</cite>
+                </blockquote>
+                <button id="newQuoteBtn" class="new-quote-btn"><i class="fa-solid fa-arrows-rotate"></i> New Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-view hidden" data-feature="pomodoro">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Pomodoro Focus Timer</h2>
+        </div>
+        <div class="feature-body pomodoro-body">
+            <div class="pomodoro-timer-container">
+                <div class="timer-visual-wrapper">
+                    <!-- SVG Progress Circle -->
+                    <svg class="progress-ring" width="220" height="220">
+                        <circle class="progress-ring__background" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8" fill="transparent" r="98" cx="110" cy="110" />
+                        <circle class="progress-ring__circle" stroke="url(#pomodoroGradient)" stroke-width="8" fill="transparent" r="98" cx="110" cy="110" stroke-dasharray="615.75" stroke-dashoffset="0" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="pomodoroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#2193b0" />
+                                <stop offset="100%" stop-color="#6dd5ed" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <!-- Digital display -->
+                    <div class="timer-display">
+                        <span id="pomodoroTime">25:00</span>
+                        <span id="pomodoroStatus" class="timer-status">Ready to Focus</span>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button id="pomodoroStart" class="timer-btn play-btn" title="Start Session"><i class="fa-solid fa-play"></i> Start</button>
+                    <button id="pomodoroPause" class="timer-btn pause-btn" title="Pause Timer" disabled><i class="fa-solid fa-pause"></i> Pause</button>
+                    <button id="pomodoroReset" class="timer-btn reset-btn" title="Reset Timer"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-view hidden" data-feature="goals">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Daily Goals</h2>
+        </div>
+        <div class="feature-body">
+            <div class="goals-input-container">
+                <input type="text" id="goalInput" placeholder="Add a key result or goal..." autocomplete="off">
+                <button id="addGoalBtn"><i class="fa-solid fa-plus"></i> Add Goal</button>
+            </div>
+            <ul id="goalList" class="goals-list"></ul>
+        </div>
+    </section>
+
+    <section class="feature-view hidden" data-feature="weather">
+        <div class="feature-header">
+            <button class="back-btn"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            <h2>Live Weather Forecast</h2>
+        </div>
+        <div class="feature-body weather-body">
+            <div id="weatherLoader" class="weather-loader">
+                <div class="spinner"></div>
+                <p>Retrieving local weather data...</p>
+            </div>
+            
+            <div id="weatherError" class="weather-error hidden">
+                <div class="error-icon"><i class="fa-solid fa-cloud-circle-exclamation"></i></div>
+                <p id="weatherErrorMsg">Failed to load weather data.</p>
+                <button id="weatherRetryBtn" class="weather-btn"><i class="fa-solid fa-arrows-rotate"></i> Retry Weather</button>
+            </div>
+
+            <div id="weatherContent" class="weather-content hidden">
+                <div class="weather-main-info">
+                    <div id="weatherIcon" class="weather-large-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <div>
+                        <div id="weatherTemp" class="weather-temp">--°C</div>
+                        <div id="weatherDesc" class="weather-desc">Unknown Condition</div>
+                        <div id="weatherLocation" class="weather-location">Jamshedpur (Fallback)</div>
+                    </div>
+                </div>
+                
+                <div class="weather-details-grid">
+                    <div class="detail-card">
+                        <div class="detail-label"><i class="fa-solid fa-wind"></i> Wind Speed</div>
+                        <div id="weatherWind" class="detail-value">-- km/h</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-label"><i class="fa-solid fa-droplet"></i> Humidity</div>
+                        <div id="weatherHumidity" class="detail-value">--%</div>
+                    </div>
+                </div>
+                
+                <button id="weatherRefreshBtn" class="weather-btn"><i class="fa-solid fa-arrows-rotate"></i> Refresh Weather</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+
+
+</html>
