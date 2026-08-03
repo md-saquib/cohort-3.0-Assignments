@@ -1,22 +1,13 @@
-import React, { useEffect } from 'react'
-import { contextData } from '../context/ContextProvider'
-import { Navigate, Outlet, useNavigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const ProtectedRoute = () => {
+export default function ProtectedRoute({ children }) {
+    const location = useLocation()
+    const { isAuthenticated } = useSelector((state) => state.auth)
 
-    const { user, setUser } = contextData();
-    const navigate = useNavigate();
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace state={{ from: location }} />
+    }
 
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem('user'));
-        if (data) {
-            setUser(data);
-            navigate('/');
-        }
-    }, []);
-
-    if (!user) return <Navigate to='/login' replace />
-    return <Outlet />
+    return children
 }
-
-export default ProtectedRoute
